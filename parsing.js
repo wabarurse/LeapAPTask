@@ -27,6 +27,7 @@ const billPeriodMatch = data.match(billPeriodRegex);
 const totalNewChargesRegex = /Total new charges\s*.*?\$([0-9,]+\.[0-9]{2})/;
 const totalNewChargesMatch = data.match(totalNewChargesRegex);
 
+// .match() returns the entire matches string in the first index, the first matched group in the second index, the second matched group in the third index, etc.
 console.log("Customer Number: ", customerAccountMatch ? customerAccountMatch[1] : "Not found");
 console.log("Account Number: ", customerAccountMatch ? customerAccountMatch[2] : "Not found");
 console.log("Bill Date: ", billDateMatch ? billDateMatch[1] : "Not found");

@@ -30,21 +30,12 @@ await page.waitForSelector('a.dropdown-item[href="/invoices/all"]', { visible: t
 await page.click('a.dropdown-item[href="/invoices/all"]');
 
 console.log("Clicked All link, waiting for page transition...");
-
 // Now let's wait for the table to be fully initialized
-await page.waitForSelector('#grid', { visible: true, timeout: 20000 });
+await page.waitForSelector('#grid > tbody > tr', { visible: true, timeout: 20000 });
 console.log("Found the grid table, waiting for it to populate...");
 
-// Wait for rows to actually appear in the table
-await page.waitForFunction(() => {
-    const table = document.getElementById("grid");
-    return table && table.querySelectorAll("tbody tr").length > 0;
-}, { polling: 1000, timeout: 50000 }); // Poll every second with a longer timeout
 
-console.log("Table appears to be populated, extracting data...");
-
-
-
+await page.waitForSelector('#grid', { visible: true, timeout: 20000 });
 const tableDataToJson = await page.evaluate(() => {
     const table = document.getElementById("grid");
 
